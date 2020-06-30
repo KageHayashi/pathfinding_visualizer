@@ -14,8 +14,8 @@ python visualize.py
 - Press 'SPACE' to visualize path
 - Press 'q' to clear board and restart
 
-
-
-
+## Visualized Path
+- Green: open cells / selected offsprings
+- Red: closed cells / path taken
 
 ![](testimages/astar.gif)

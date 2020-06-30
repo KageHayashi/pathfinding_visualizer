@@ -16,6 +16,6 @@ python visualize.py
 
 ## Visualized Path
 - Green: open cells / selected offsprings
-- Red: closed cells / path taken
+- Red: closed cells
 
 ![](testimages/astar.gif)

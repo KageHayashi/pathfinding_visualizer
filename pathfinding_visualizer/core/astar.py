@@ -4,23 +4,23 @@ from grid import Grid
 from color import Color
 
 def aStar(grid, start, finish):
-    openList = []
-    closedList = []
-    openList.append(start)
+    openCells = []
+    closeCells = []
+    openCells.append(start)
     steps = 0
     lowestF = 0
-    while len(openList) > 0:
-        current_cell = openList[lowestF]
+    while len(openCells) > 0:
+        current_cell = openCells[lowestF]
         steps+=1
-        for i in range(len(openList)):
-            if openList[i].f < current_cell.f:
-                current_cell = openList[i]
+        for i in range(len(openCells)):
+            if openCells[i].f < current_cell.f:
+                current_cell = openCells[i]
                 lowestF = i
 
         current_cell.value = 1
         current_cell.f = 0
 
-        openList.pop(lowestF)
+        openCells.pop(lowestF)
         current_cell.getOffsprings()
         offsprings = current_cell.offsprings
 
@@ -38,25 +38,25 @@ def aStar(grid, start, finish):
                 offspring.value = 3
                 return True
 
-            #If offspring not in closedList and not blocked then calculate temporary values of g, h, and f.
-            if offspring not in closedList:
+            #If offspring not in closeCells and not blocked then calculate temporary values of g, h, and f.
+            if offspring not in closeCells:
                 tempG = current_cell.g + 1
                 tempH = heuristics.calculate_euclidean_heuristics(offspring, finish)
                 tempF = tempG + tempH
 
-                #if cell with the same position as offspring is already in the openList with a smaller f value, skip it
-                #in other words, put the offspring into the openList if it's not already on the openList or if the cell already in the list has a bigger f value
-                if offspring not in openList:
+                #if cell with the same position as offspring is already in the openCells with a smaller f value, skip it
+                #in other words, put the offspring into the openCells if it's not already on the openCells or if the cell already in the list has a bigger f value
+                if offspring not in openCells:
                     offspring.g = tempG
                     offspring.h = tempH
                     offspring.f = tempF
-                    openList.append(offspring)
-                elif offspring in openList and tempF < offspring.f:
+                    openCells.append(offspring)
+                elif offspring in openCells and tempF < offspring.f:
                     offspring.f = tempF
         #end of offspring loop
 
-        #push current_cell onto closedList
-        closedList.append(current_cell)
+        #push current_cell onto closeCells
+        closeCells.append(current_cell)
 
         for child in offsprings:
             child.value = 2
@@ -66,10 +66,10 @@ def aStar(grid, start, finish):
 
         '''FOLOWING USED FOR DEBUGGING'''
         # print("open: ")
-        # for cell in openList:
+        # for cell in openCells:
         #     print(f'({cell.x}, {cell.y}, {cell.f})')
         # print("closed: ")
-        # for cell in closedList:
+        # for cell in closeCells:
         #     print(f'({cell.x}, {cell.y}, {cell.f})')
         # print("offsprings: ")
         # for cell in offsprings:
@@ -77,11 +77,11 @@ def aStar(grid, start, finish):
         # print("")
 
         #Visualize the path
-        for i in range(len(openList)):
-            openList[i].display(Color.GREEN)
+        for i in range(len(openCells)):
+            openCells[i].display(Color.GREEN)
 
-        for i in range(len(closedList)):
-            if closedList[i] != start:
-                closedList[i].display(Color.RED)
+        for i in range(len(closeCells)):
+            if closeCells[i] != start:
+                closeCells[i].display(Color.RED)
 
     return False

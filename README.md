@@ -1,5 +1,5 @@
 # Pathfinding_Visualizer
-A visualizer for pathfinding algorithms like A*
+A visualizer for the A-Star pathfinding algorithm
 
 ## Run
 Just run the visualize.py script inside the core directory

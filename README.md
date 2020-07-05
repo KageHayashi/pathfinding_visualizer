@@ -19,3 +19,8 @@ python visualize.py
 - Red: closed cells
 
 ![](testimages/astar.gif)
+
+## Skills Learned
+- A-Star pathfinding algorithm
+- Visualization using Pygame
+- Calculating different heuristics 
